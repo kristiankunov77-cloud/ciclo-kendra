@@ -719,6 +719,42 @@ details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; f
     return Object.entries(data.logs).some(([d, l]) => d >= addDays(m.last.start, -3) && l.sex === 'non_protetto');
   }
 
+  // Cosa sapere dopo un rapporto segnato: cambia in base alla fase di quel giorno e a quanti giorni sono passati.
+  const fa = (n) => (n === 0 ? 'oggi' : n === 1 ? 'ieri' : `${n} giorni fa`);
+  function sexTips(m, d) {
+    const l = data.logs[d];
+    if (!l || !l.sex) return [];
+    const ph = phaseOf(m, d);
+    const fertile = ph === 'fertile' || ph === 'ovulazione';
+    const passati = diff(d, m.today);
+    const out = [];
+    if (l.sex === 'non_protetto' && !data.pillola) {
+      const rischio = fertile
+        ? `Il ${fmtDM(d)} eri nei giorni fertili${ph === 'ovulazione' ? ', proprio nel giorno dell\'ovulazione' : ''}: è il momento in cui una gravidanza è più probabile.`
+        : ph === 'mestruale'
+        ? `Il ${fmtDM(d)} avevi il ciclo: una gravidanza è poco probabile, ma non impossibile, soprattutto con un ciclo irregolare come il tuo.`
+        : `Il ${fmtDM(d)} non eri nei giorni fertili stimati, quindi il rischio è più basso. Ma con un ciclo irregolare l'ovulazione può arrivare prima o dopo, e gli spermatozoi vivono fino a 5 giorni: il rischio non è zero.`;
+      const pillola = passati <= 4
+        ? ` Se non cercate una gravidanza, sono passati ${passati === 0 ? 'meno di un giorno' : giorni(passati)}: la pillola del giorno dopo si può ancora prendere ed è più efficace prima la prendi (entro 3 giorni il levonorgestrel, entro 5 giorni l'ulipristal). La trovi in farmacia senza ricetta.`
+        : '';
+      out.push({ t: 'Rapporto non protetto', p: rischio + pillola, sex: 'non' });
+      const test = addDays(d, 21) < m.expected ? addDays(d, 21) : m.expected;
+      out.push({ t: 'Quando fare il test', p: `Un test di gravidanza è affidabile dal ${fmtLong(test)}${test === m.expected ? ', il giorno in cui aspetti il ciclo' : ', tre settimane dopo il rapporto'}. Prima può dare un falso negativo. Se il ciclo arriva normale, puoi stare tranquilla.` });
+    } else if (l.sex === 'non_protetto') {
+      out.push({ t: 'Rapporto senza preservativo', p: 'Se prendi la pillola ogni giorno senza dimenticanze, sei protetta dalla gravidanza. Se hai saltato una pillola negli ultimi 7 giorni, o hai avuto vomito o diarrea, la protezione può non esserci: senti il farmacista.' });
+    } else {
+      out.push({ t: 'Rapporto protetto', p: fertile
+        ? 'Eri nei giorni fertili, ma con il preservativo usato bene dall\'inizio alla fine sei protetta. Se si è rotto o sfilato, segnalo come non protetto e qui ti dico cosa fare.'
+        : 'Con il preservativo usato bene sei protetta da gravidanza e infezioni. Se si è rotto o sfilato, segnalo come non protetto e qui ti dico cosa fare.' });
+    }
+    // Cosa può cambiare nel ciclo.
+    out.push({ t: 'Cosa può cambiare', p: ph === 'mestruale'
+      ? 'Durante il ciclo un rapporto non cambia il flusso, e l\'orgasmo può perfino calmare i crampi. Le infezioni passano più facilmente in questi giorni: il preservativo protegge.'
+      : 'Un rapporto non sposta il ciclo: se arriva in ritardo, oltre alla gravidanza le cause più comuni sono stress, sonno, viaggi e cambi di peso. Fai pipì subito dopo: riduce il rischio di cistite.',
+      doc: 'Se hai perdite di sangue dopo i rapporti, dolore durante o perdite strane, senti la ginecologa.' });
+    return out;
+  }
+
   function viewOggi(m, today) {
     const ph = phaseOf(m, today);
     const F = FASI[ph];
@@ -738,17 +774,24 @@ details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; f
     const log = data.logs[today];
     const tips = tipsFor(log, today);
     const tip = tips.length ? tips[0] : { t: F.nome, p: daily(F.tips, today) };
+    // Rapporto segnato negli ultimi 5 giorni: in Oggi resta il consiglio più importante.
+    const sexDay = [0, 1, 2, 3, 4].map((i) => addDays(today, -i)).find((x) => data.logs[x] && data.logs[x].sex);
+    const sexNote = sexDay ? sexTips(m, sexDay)[0] : null;
     const nextOvu = m.nextOvu;
+    const lastOvu = m.ovus.filter((o) => o.ovu < today && o.ovu >= addDays(today, -60)).pop() || null;
     return `${header('Ciao Kendra', cap(fmtLong(today)))}
       <section class="panel hero">${ring(m)}
         <span class="pill ${pillCls}">Giorno ${m.cycleDay} del ciclo · ${F.nome}</span>
         <div style="width:100%;display:grid;gap:8px">${btn}</div>
       </section>
       ${note}
+      ${sexNote ? `<section class="panel"><p class="label">Rapporto di ${fa(diff(sexDay, today))}</p>${tipHtml(sexNote)}<button class="linkbtn" data-go="sintomi" data-day="${sexDay}">Leggi tutto</button></section>` : ''}
       <section class="panel">
         <dl class="facts">
           <div><dt>Prossimo ciclo</dt><dd>${cap(fmtWDM(m.expected))}${m.delay ? `<small>ritardo di ${giorni(m.delay)}</small>` : ''}</dd></div>
-          ${nextOvu ? `<div><dt>Ovulazione</dt><dd>${cap(fmtWDM(nextOvu.ovu))}<small>giorni fertili ${fmtDMs(nextOvu.from)} – ${fmtDMs(nextOvu.to)}</small></dd></div>` : ''}
+          <div><dt>Ultimo ciclo</dt><dd>${m.ongoing ? 'In corso' : `${fmtDMs(m.last.start)} – ${fmtDMs(m.endOf(m.last))}`}<small>${m.ongoing ? 'dal ' + fmtDMs(m.last.start) + ' · ' : ''}iniziato ${fa(diff(m.last.start, today))}</small></dd></div>
+          ${nextOvu ? `<div><dt>Prossima ovulazione</dt><dd>${cap(fmtWDM(nextOvu.ovu))}<small>giorni fertili ${fmtDMs(nextOvu.from)} – ${fmtDMs(nextOvu.to)}</small></dd></div>` : ''}
+          ${lastOvu ? `<div><dt>Ultima ovulazione</dt><dd>${cap(fmtWDM(lastOvu.ovu))}<small>stimata · ${fa(diff(lastOvu.ovu, today))}</small></dd></div>` : ''}
           <div><dt>Durata del ciclo</dt><dd>${giorni(m.cyc)}<small>${based}${range ? ', ' + range : ''}</small></dd></div>
           <div><dt>Durata del flusso</dt><dd>${giorni(m.flow)}<small>${m.plens.length ? `media di ${m.plens.length} ${m.plens.length === 1 ? 'ciclo' : 'cicli'}` : 'valore di partenza'}</small></dd></div>
         </dl>
@@ -825,6 +868,7 @@ details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; f
       <section class="panel"><p class="label">Flusso</p><div class="seg">${flows}</div>${flowHint}</section>
       <section class="panel"><p class="label">Altro</p>
         <div><p class="small" style="margin-bottom:6px">Rapporti</p><div class="seg">${sexes}</div></div>
+        ${sexTips(m, d).map((x) => `<div class="note ${x.sex ? '' : 'violet'} sexnote"><p><b>${esc(x.t)}</b></p><p>${esc(x.p)}</p>${x.doc ? `<p class="small">${esc(x.doc)}</p>` : ''}</div>`).join('')}
         ${data.pillola ? `<div class="toggle"><span>Pillola presa</span><button class="switch" role="switch" data-pill aria-checked="${!!log.pill}" aria-label="Pillola presa"></button></div>` : ''}
         <div class="grid2">
           <div class="field"><label for="x-weight">Peso (kg)</label><input id="x-weight" type="text" inputmode="decimal" value="${log.weight ? String(log.weight).replace('.', ',') : ''}" placeholder="es. 56,5"></div>
