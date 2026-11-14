@@ -10,7 +10,7 @@
 <title>Ciclo di Kendra</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Karla:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Fredoka:wght@500;600;700&family=Karla:wght@400;500;700&display=swap">
 <style>
 html, body { margin: 0; min-height: 100% }
 :root { color-scheme: light; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px) }
@@ -21,7 +21,8 @@ img { max-width: 100% }
 /* Layout: app a schede (in basso su telefono, a sinistra su computer). Rosa cipria, malva per ovulazione e giorni fertili. */
 :root {
   --bg: #f8eef0;
-  --surface: #fffcfd;
+  --surface: #fdf5ea;
+  --cream: #fff8ee;
   --line: #ead6dc;
   --fg: #3a2a33;
   --muted: #8c7480;
@@ -37,6 +38,7 @@ img { max-width: 100% }
   --tabs: #f1dfe5;
   --ok: #5f9a7a;
   --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-fun: "Fredoka", "Baloo 2", "Segoe UI", system-ui, sans-serif;
   --font-body: "Karla", "Segoe UI", system-ui, sans-serif;
   --r: 12px;
 }
@@ -65,14 +67,14 @@ button { cursor: pointer }
   .tabs { position: sticky; top: env(safe-area-inset-top, 0px); height: 100vh; border-top: 0; border-right: 1px solid var(--line);
     grid-template-columns: 1fr; align-content: start; gap: 4px; padding: 20px 12px; padding-left: max(12px, env(safe-area-inset-left, 0px)) }
   .tab { grid-auto-flow: column; justify-content: start; gap: 10px; font-size: 15px; padding: 9px 12px }
-  .brand { display: block; font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 26px; color: var(--title); padding: 0 12px 16px; line-height: 1.05 }
+  .brand { display: block; font-family: var(--font-fun); font-weight: 700; font-size: 25px; text-shadow: 2px 2px 0 #ecd3e6; color: var(--title); padding: 0 12px 16px; line-height: 1.05 }
   .main { padding-block: 24px 40px }
 }
 
 /* Testata */
 .top { display: flex; align-items: center; gap: 8px; padding-block: 4px }
-.top h1 { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: clamp(28px, 7vw, 36px); color: var(--title); margin: 0; flex: 1; min-width: 0; line-height: 1.05; text-wrap: balance }
-.top h1 small { display: block; font-family: var(--font-body); font-style: normal; font-weight: 500; font-size: 13px; color: var(--muted); letter-spacing: .02em; margin-top: 2px }
+.top h1 { font-family: var(--font-fun); font-weight: 700; font-size: clamp(30px, 8vw, 38px); letter-spacing: -.01em; text-shadow: 2px 3px 0 #ecd3e6; color: var(--title); margin: 0; flex: 1; min-width: 0; line-height: 1.05; text-wrap: balance }
+.top h1 small { display: block; text-shadow: none; font-family: var(--font-body); font-style: normal; font-weight: 500; font-size: 13px; color: var(--muted); letter-spacing: .02em; margin-top: 2px }
 .iconbtn { width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); display: grid; place-items: center; flex: none; padding: 0 }
 .iconbtn svg { width: 18px; height: 18px }
 .iconbtn:disabled { opacity: .35; cursor: default }
@@ -80,12 +82,12 @@ button { cursor: pointer }
 
 /* Blocchi */
 .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; gap: 12px; min-width: 0 }
-.panel h2 { font-family: var(--font-display); font-weight: 600; font-size: 23px; margin: 0; line-height: 1.15; color: var(--fg); text-wrap: balance }
+.panel h2 { font-family: var(--font-fun); font-weight: 600; font-size: 21px; margin: 0; line-height: 1.15; color: var(--fg); text-wrap: balance }
 .panel h2 small { font-family: var(--font-body); font-weight: 500; font-size: 13px; color: var(--muted); margin-left: 6px }
 .panel p { margin: 0 }
 .label { font-size: 11.5px; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); font-weight: 700; margin: 0 }
 .empty { color: var(--muted); font-size: 14px; margin: 0 }
-.btn { min-height: 46px; border: 0; border-radius: 10px; padding: 0 18px; background: var(--period); color: #fff; font-weight: 700; font-size: 15px; flex: 0 0 auto }
+.btn { min-height: 46px; border: 0; border-radius: 10px; padding: 0 18px; background: var(--period); color: var(--cream); font-weight: 700; font-size: 15px; flex: 0 0 auto }
 .btn.block { width: 100% }
 .btn.ghost { background: var(--chip); color: var(--fg) }
 .btn.violet { background: var(--accent) }
@@ -102,19 +104,32 @@ textarea { padding: 10px 12px; min-height: 76px; resize: vertical }
 
 /* Anello del ciclo */
 .hero { display: grid; justify-items: center; gap: 10px; padding-block: 18px }
-.ring { position: relative; width: min(230px, 70vw); aspect-ratio: 1; max-width: 100% }
-.ring svg { width: 100%; height: 100%; display: block }
-.ring .in { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 2px; padding: 0 24px }
-.ring .lab { font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-weight: 700 }
-.ring .big { font-family: var(--font-display); font-weight: 600; font-size: 50px; line-height: .95; color: var(--title); font-variant-numeric: lining-nums }
+.ring { position: relative; width: min(250px, 74vw); aspect-ratio: 1; max-width: 100% }
+.ring svg { width: 100%; height: 100%; display: block; overflow: visible }
+.ring .in { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 1px; padding: 0 30px }
+.ring .lab { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 700 }
+.ring .unit { font-family: var(--font-fun); font-weight: 600; font-size: 19px; color: var(--title); line-height: 1.1 }
+.ring .unit.late { color: var(--late) }
+.ring .unit.per { color: var(--period-ink) }
+.ring .big { font-family: var(--font-fun); font-weight: 700; font-size: 62px; line-height: .95; letter-spacing: -.01em; color: var(--title); text-shadow: 2px 3px 0 #ecd3e6 }
+.ring .big.late, .ring .big.per { text-shadow: 2px 3px 0 #f3d5de }
 .ring .big.late { color: var(--late) }
 .ring .big.per { color: var(--period-ink) }
-.ring .sub { font-size: 13px; color: var(--fg) }
+.ring .sub { font-size: 12.5px; color: var(--fg); margin-top: 2px }
 .pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; background: var(--chip); color: var(--fg); text-align: center }
 .pill.late { background: var(--late-soft); color: var(--late) }
 .pill.per { background: var(--period-soft); color: var(--period-ink) }
 .pill.fert { background: var(--fert-soft); color: var(--accent) }
 .facts { display: grid; gap: 0; margin: 0 }
+.kv { display: grid; gap: 14px }
+.kg { display: grid; gap: 8px }
+.kg > .label { display: flex; align-items: center; gap: 8px }
+.kg > .label i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2px var(--surface), 0 0 0 3.5px var(--c) }
+.kgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px }
+.kt { display: grid; align-content: start; gap: 2px; padding: 11px 12px; border-radius: 14px; background: var(--t); border: 1.5px solid color-mix(in srgb, var(--c) 22%, transparent); min-width: 0 }
+.kt span { font-size: 12px; font-weight: 700; color: var(--muted) }
+.kt b { font-family: var(--font-fun); font-weight: 600; font-size: 18px; line-height: 1.2; color: var(--fg) }
+.kt small { font-size: 12px; color: var(--muted); line-height: 1.3 }
 .facts div { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 14.5px }
 .facts div:first-child { border-top: 0; padding-top: 0 }
 .facts dt { color: var(--muted) }
@@ -134,7 +149,7 @@ textarea { padding: 10px 12px; min-height: 76px; resize: vertical }
 .tip .doc { font-size: 13px; color: var(--late) }
 details.lib { border-top: 1px solid var(--line); padding: 10px 0 }
 details.lib:first-of-type { border-top: 0 }
-details.lib summary { cursor: pointer; font-weight: 700; list-style-position: outside }
+details.lib summary { cursor: pointer; font-weight: 700; list-style-position: inside }
 details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px }
 .freq { display: grid; gap: 8px }
 .freq div { display: grid; grid-template-columns: minmax(0, 9em) 1fr auto; gap: 10px; align-items: center; font-size: 14px }
@@ -148,15 +163,15 @@ details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; f
 .cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px 2px; text-align: center }
 .cal .dow { font-size: 11.5px; color: var(--muted); font-weight: 700; padding-bottom: 2px }
 .cal .d { position: relative; width: min(42px, 100%); aspect-ratio: 1; margin: 0 auto; border-radius: 50%; display: grid; place-items: center; font-size: 14.5px; border: 0; background: none; padding: 0; font-variant-numeric: tabular-nums }
-.cal .d.per { background: var(--period); color: #fff; font-weight: 700 }
+.cal .d.per { background: var(--period); color: var(--cream); font-weight: 700 }
 .cal .d.pred { box-shadow: inset 0 0 0 2px var(--period); color: var(--period-ink); font-weight: 700; background: repeating-linear-gradient(45deg, transparent 0 4px, var(--period-soft) 4px 7px) }
 .cal .d.fert { background: var(--fert-soft); color: var(--accent); font-weight: 500 }
-.cal .d.ovu { background: var(--accent); color: #fff; font-weight: 700 }
+.cal .d.ovu { background: var(--accent); color: var(--cream); font-weight: 700 }
 .cal .d.today { outline: 2px solid var(--fg); outline-offset: 2px }
 .cal .d.future { opacity: .92 }
 .cal .d .dot { position: absolute; bottom: 3px; left: 50%; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--fg); opacity: .55 }
-.cal .d.per .dot, .cal .d.ovu .dot { background: #fff; opacity: .9 }
-.cal .d .badge { position: absolute; top: -7px; right: -7px; background: var(--late); color: #fff; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 8px; line-height: 1.4 }
+.cal .d.per .dot, .cal .d.ovu .dot { background: var(--cream); opacity: .9 }
+.cal .d .badge { position: absolute; top: -7px; right: -7px; background: var(--late); color: var(--cream); font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 8px; line-height: 1.4 }
 .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px }
 .legend span { display: inline-flex; align-items: center; gap: 6px }
 .legend i { width: 14px; height: 14px; border-radius: 50%; display: inline-block; flex: none }
@@ -174,16 +189,23 @@ details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; f
 /* Sintomi */
 .chips { display: flex; flex-wrap: wrap; gap: 8px }
 .chip { min-height: 38px; padding: 0 14px; border-radius: 999px; font-size: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--fg) }
-.chip[aria-pressed="true"] { background: var(--period); border-color: var(--period); color: #fff; font-weight: 700 }
+.chip[aria-pressed="true"] { background: var(--period); border-color: var(--period); color: var(--cream); font-weight: 700 }
 .chips.violet .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent) }
+.chips.symg { display: grid; grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)); gap: 8px }
+.chip.sy { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 0; padding: 10px 4px 8px; border-radius: 18px; font-size: 12.5px; line-height: 1.15; text-align: center }
+.chip.sy .bico { width: 44px; height: 44px; padding: 3px; border-radius: 50%; background: var(--cream); box-sizing: content-box }
+.chip.sy[aria-pressed="true"] .bico { box-shadow: 0 0 0 2px var(--cream) }
+.bico { display: block; flex: none }
+.tip h3 .bico { display: inline-block; width: 30px; height: 30px; vertical-align: middle; margin: -4px 8px 0 0 }
+details.lib summary .bico { display: inline-block; width: 28px; height: 28px; vertical-align: middle; margin: -4px 8px 0 2px }
 .seg { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 6px }
 .seg button { min-height: 40px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); font-size: 13.5px; padding: 0 6px }
-.seg button[aria-pressed="true"] { background: var(--period); border-color: var(--period); color: #fff; font-weight: 700 }
+.seg button[aria-pressed="true"] { background: var(--period); border-color: var(--period); color: var(--cream); font-weight: 700 }
 .toggle { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 14.5px }
 .toggle:first-child { border-top: 0 }
 .toggle small { display: block; color: var(--muted); font-size: 12.5px }
 .switch { width: 48px; height: 28px; border-radius: 99px; border: 0; background: var(--line); position: relative; flex: none; padding: 0 }
-.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.2) }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--cream); box-shadow: 0 1px 2px rgba(0,0,0,.2) }
 .switch[aria-checked="true"] { background: var(--accent) }
 .switch[aria-checked="true"]::after { left: 23px }
 @media (prefers-reduced-motion: no-preference) { .switch::after { transition: left .15s } }
@@ -210,7 +232,7 @@ details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; f
 .sync[data-s="error"]::before { background: var(--late) }
 .hours { display: flex; flex-wrap: wrap; gap: 6px }
 .hour { height: 36px; min-width: 56px; padding: 0 10px; border: 1px solid var(--line); border-radius: 99px; background: var(--bg); font-size: 13px; font-variant-numeric: tabular-nums }
-.hour[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent) }
+.hour[aria-pressed="true"] { background: var(--accent); color: var(--cream); border-color: var(--accent) }
 .small { font-size: 13px; color: var(--muted) }
 
 /* ---------- Animazioni ----------
@@ -335,81 +357,398 @@ details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; f
   const $ = (id) => document.getElementById(id);
   const avg = (a) => a.reduce((x, y) => x + y, 0) / a.length;
 
+  // ---------- icone dei sintomi (disegni della parte del corpo) ----------
+  const ICON_SVG = (() => {
+// Icone disegnate delle parti del corpo (viewBox 40x40).
+const O = 'stroke="#7a4a64" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"';
+const SKIN = '#f6d3bf', SKIN2 = '#ebb99f', HAIR = '#6e4636', ORG = '#f1a3b6', ORG2 = '#f9cdd8', PAIN = '#e0466b', VIO = '#9b78c9';
+const bolt = (x, y, s = 1) => `<path d="M${x} ${y}l${2.2*s} ${2.6*s}l${-1.6*s} ${0.4*s}l${2.2*s} ${3*s}" fill="none" stroke="${PAIN}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`;
+const glow = (x, y, r) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${PAIN}" opacity=".18"/><circle cx="${x}" cy="${y}" r="${r * .55}" fill="${PAIN}" opacity=".28"/>`;
+// Viso di base: parametri per occhi e extra.
+const face = (eyes, extra = '', hair = HAIR) => `
+  <path d="M14 33 L14 36 Q20 38.5 26 36 L26 33Z" fill="${SKIN2}" ${O}/>
+  <ellipse cx="20" cy="21" rx="10" ry="11" fill="${SKIN}" ${O}/>
+  <path d="M9.6 22 Q8.5 9.5 20 9 Q31.5 9.5 30.4 22 Q29.5 15.5 25 14.2 Q19 16.8 13.5 14.8 Q10.4 17 9.6 22Z" fill="${hair}" ${O}/>
+  <ellipse cx="14.6" cy="25.4" rx="2" ry="1.2" fill="#f4a3a8" opacity=".55"/><ellipse cx="25.4" cy="25.4" rx="2" ry="1.2" fill="#f4a3a8" opacity=".55"/>
+  ${eyes}
+  ${extra}`;
+const EYES = {
+  ok: '<circle cx="16" cy="21.5" r="1.2" fill="#3a2a33"/><circle cx="24" cy="21.5" r="1.2" fill="#3a2a33"/><path d="M18 27 Q20 28.4 22 27" fill="none" stroke="#7a4a64" stroke-width="1.3" stroke-linecap="round"/>',
+  pain: '<path d="M14.6 20.6 L17.2 21.8 L14.6 23" fill="none" stroke="#3a2a33" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M25.4 20.6 L22.8 21.8 L25.4 23" fill="none" stroke="#3a2a33" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 28 Q20 26.6 22 28" fill="none" stroke="#7a4a64" stroke-width="1.3" stroke-linecap="round"/>',
+  sleep: '<path d="M14.5 21.8 Q16 23.2 17.5 21.8" fill="none" stroke="#3a2a33" stroke-width="1.3" stroke-linecap="round"/><path d="M22.5 21.8 Q24 23.2 25.5 21.8" fill="none" stroke="#3a2a33" stroke-width="1.3" stroke-linecap="round"/><ellipse cx="20" cy="27.6" rx="1.4" ry="1" fill="#7a4a64"/>',
+  awake: '<circle cx="16" cy="21.5" r="1.7" fill="#fff" stroke="#3a2a33" stroke-width="1"/><circle cx="16" cy="21.6" r=".8" fill="#3a2a33"/><circle cx="24" cy="21.5" r="1.7" fill="#fff" stroke="#3a2a33" stroke-width="1"/><circle cx="24" cy="21.6" r=".8" fill="#3a2a33"/><path d="M14.6 23.9 Q16 24.8 17.4 23.9M22.6 23.9 Q24 24.8 25.4 23.9" fill="none" stroke="#a77f92" stroke-width="1" stroke-linecap="round"/><path d="M18.4 27.6 H21.6" stroke="#7a4a64" stroke-width="1.3" stroke-linecap="round"/>',
+  dizzy: '<path d="M16 21.5 m-1.6 0 a1.6 1.6 0 1 1 1.6 1.6 a.9.9 0 1 1 .2-1.2" fill="none" stroke="#3a2a33" stroke-width="1.1" stroke-linecap="round"/><path d="M24 21.5 m-1.6 0 a1.6 1.6 0 1 1 1.6 1.6 a.9.9 0 1 1 .2-1.2" fill="none" stroke="#3a2a33" stroke-width="1.1" stroke-linecap="round"/><path d="M18 27.8 Q19 26.8 20 27.8 Q21 28.8 22 27.8" fill="none" stroke="#7a4a64" stroke-width="1.2" stroke-linecap="round"/>'
+};
+const uterus = (extra = '', rightOvary = ORG) => `
+  <path d="M13.6 14.6 Q10 9.4 6.6 12.6" fill="none" stroke="#7a4a64" stroke-width="2.6" stroke-linecap="round"/><path d="M13.6 14.6 Q10 9.4 6.6 12.6" fill="none" stroke="${ORG}" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M26.4 14.6 Q30 9.4 33.4 12.6" fill="none" stroke="#7a4a64" stroke-width="2.6" stroke-linecap="round"/><path d="M26.4 14.6 Q30 9.4 33.4 12.6" fill="none" stroke="${ORG}" stroke-width="1.2" stroke-linecap="round"/>
+  <ellipse cx="6.8" cy="16.6" rx="3" ry="2.3" fill="${ORG}" ${O}/>
+  <ellipse cx="33.2" cy="16.6" rx="3" ry="2.3" fill="${rightOvary}" ${O}/>
+  <path d="M12.8 13.6 Q20 10.6 27.2 13.6 Q28.2 21 23.4 24.6 L23.4 29.4 Q20 31.6 16.6 29.4 L16.6 24.6 Q11.8 21 12.8 13.6Z" fill="${ORG}" ${O}/>
+  <path d="M16.6 15.6 Q20 14.4 23.4 15.6 Q22 20 20 22.4 Q18 20 16.6 15.6Z" fill="${ORG2}"/>
+  ${extra}`;
+const stomach = (fill = ORG, extra = '') => `
+  <path d="M15.4 6 L15.4 11.6 Q9.4 14 10.2 22 Q11 31 20.4 31.2 Q29 31.4 30.6 25 Q31.6 19.6 27.4 20.6 Q24.4 21.4 23.4 17.6 Q22.4 13.4 20.6 11.6 L20.6 6Z" fill="${fill}" ${O}/>
+  <path d="M27.4 22.2 Q29.6 24.4 28.2 26.4" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" opacity=".7"/>
+  <path d="M28.4 29.4 Q30.4 31.4 30 34.6" fill="none" stroke="#7a4a64" stroke-width="1.4" stroke-linecap="round"/>
+  ${extra}`;
+const intestine = (extra = '') => `
+  <path d="M9 31 L9 13 Q9 9 13 9 L27 9 Q31 9 31 13 L31 27 Q31 31 27 31 L22 31 L22 34" fill="none" stroke="#7a4a64" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M9 31 L9 13 Q9 9 13 9 L27 9 Q31 9 31 13 L31 27 Q31 31 27 31 L22 31 L22 34" fill="none" stroke="${ORG}" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M14 15 Q20 13 25 15 Q27 17.5 24 19 Q19 20 16 21.5 Q13.5 23.5 16 25 Q20 26.5 25 25" fill="none" stroke="#7a4a64" stroke-width="4.4" stroke-linecap="round"/>
+  <path d="M14 15 Q20 13 25 15 Q27 17.5 24 19 Q19 20 16 21.5 Q13.5 23.5 16 25 Q20 26.5 25 25" fill="none" stroke="${ORG2}" stroke-width="2" stroke-linecap="round"/>
+  ${extra}`;
+const briefs = (extra = '') => `
+  <path d="M6 12 L34 12 L34 16 Q27 18 23.4 29 L16.6 29 Q13 18 6 16Z" fill="${ORG2}" ${O}/>
+  <path d="M6 14.4 H34" stroke="#e98fa6" stroke-width="1.6"/>
+  <path d="M17.4 26.4 Q20 27.4 22.6 26.4" fill="none" stroke="#e98fa6" stroke-width="1.1" stroke-linecap="round"/>
+  ${extra}`;
+const torsoBack = `
+  <path d="M7 36 Q6.4 24 9 17 Q11 12.6 15.4 11.6 Q17 9.6 20 9.4 Q23 9.6 24.6 11.6 Q29 12.6 31 17 Q33.6 24 33 36Z" fill="${SKIN}" ${O}/>
+  <path d="M17 7 Q20 5.6 23 7 L23 10.6 Q20 12 17 10.6Z" fill="${SKIN2}" ${O}/>
+  <path d="M20 12.6 V34" stroke="${SKIN2}" stroke-width="1.4" stroke-dasharray="1.6 1.8" stroke-linecap="round"/>
+  <path d="M13.6 16.4 Q15.6 19.6 18.4 18.2M26.4 16.4 Q24.4 19.6 21.6 18.2" fill="none" stroke="${SKIN2}" stroke-width="1.2" stroke-linecap="round"/>`;
+const torsoFront = (extra = '') => `
+  <path d="M6 36 Q5.6 24 9 18.4 Q11.4 14 15.4 13 Q17 11 20 10.8 Q23 11 24.6 13 Q28.6 14 31 18.4 Q34.4 24 34 36Z" fill="${SKIN}" ${O}/>
+  <path d="M17 7.6 Q20 6.2 23 7.6 L23 11.6 Q20 13 17 11.6Z" fill="${SKIN2}" ${O}/>
+  ${extra}`;
+const hand = (extra = '') => `
+  <path d="M13 36 L13 27 Q9.4 24.6 8 21 Q7.4 19.2 9 18.8 Q10.6 18.6 12 20.6 L13.4 22.2 L13.4 10 Q13.4 8 15.2 8 Q17 8 17 10 L17 18 L17.4 8 Q17.4 6 19.2 6 Q21 6 21 8 L21 18 L21.6 9 Q21.6 7 23.4 7 Q25.2 7 25.2 9 L25 19 L25.8 12 Q25.8 10.2 27.4 10.2 Q29 10.2 29 12 L28.6 25 Q28 29 25.6 31 L25.6 36Z" fill="${SKIN}" ${O}/>
+  ${extra}`;
+const heart = (fill, extra = '') => `<path d="M20 33 Q8 25 7.4 16.6 Q7.4 10.6 13.2 10 Q17.6 9.8 20 14 Q22.4 9.8 26.8 10 Q32.6 10.6 32.6 16.6 Q32 25 20 33Z" fill="${fill}" ${O}/><path d="M12.4 14 Q13.4 12.6 15 12.8" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".75"/>${extra}`;
+const brain = (extra = '') => `
+  <path d="M20 9 Q16.4 6.6 13.4 8.6 Q9.6 8.6 9 12.4 Q6 14.4 7.4 18 Q5.6 21.6 8.6 24.4 Q8.6 28.6 13 29 Q15.6 31.6 20 29.6 Q24.4 31.6 27 29 Q31.4 28.6 31.4 24.4 Q34.4 21.6 32.6 18 Q34 14.4 31 12.4 Q30.4 8.6 26.6 8.6 Q23.6 6.6 20 9Z" fill="${ORG2}" ${O}/>
+  <path d="M20 9.6 V29" stroke="#7a4a64" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M13 13 Q15.6 14 15 16.6 M10.6 20 Q13.4 19.6 14.4 21.8 M12.4 25.4 Q14.6 24.4 16.4 25.8 M27 13 Q24.4 14 25 16.6 M29.4 20 Q26.6 19.6 25.6 21.8 M27.6 25.4 Q25.4 24.4 23.6 25.8" fill="none" stroke="#c27a92" stroke-width="1.2" stroke-linecap="round"/>
+  ${extra}`;
+const ICONE = {
+  crampi: uterus(bolt(4, 23) + bolt(32.6, 23) + bolt(18.8, 31.6, .8)),
+  ovulazione: uterus(`<circle cx="33.2" cy="16.6" r="5.6" fill="${VIO}" opacity=".18"/><path d="M33 6.2 l.9 2 2 .9 -2 .9 -.9 2 -.9 -2 -2 -.9 2 -.9z" fill="${VIO}"/>`, VIO),
+  testa: face(EYES.pain, bolt(28.4, 8.4) + bolt(7.6, 9.6, .8)),
+  vertigini: face(EYES.dizzy, `<path d="M7 7.6 l.7 1.5 1.5.7 -1.5.7 -.7 1.5 -.7 -1.5 -1.5 -.7 1.5 -.7z" fill="${VIO}"/><path d="M32.4 6 l.6 1.3 1.3.6 -1.3.6 -.6 1.3 -.6 -1.3 -1.3 -.6 1.3 -.6z" fill="#e3a43a"/><circle cx="34" cy="13" r="1" fill="${VIO}"/>`),
+  stanchezza: face(EYES.sleep, `<text x="29" y="10" font-family="Fredoka, sans-serif" font-weight="700" font-size="7" fill="${VIO}">z</text><text x="33" y="6" font-family="Fredoka, sans-serif" font-weight="700" font-size="5" fill="${VIO}">z</text>`),
+  insonnia: face(EYES.awake, `<path d="M33.6 4.6 a5 5 0 1 0 2.4 8.4 a4 4 0 0 1 -2.4 -8.4z" fill="#f2c45a" stroke="#7a4a64" stroke-width="1.1" stroke-linejoin="round"/>`),
+  acne: face(EYES.ok, `<circle cx="13.6" cy="28" r="1.1" fill="${PAIN}"/><circle cx="23.6" cy="29.6" r="1" fill="${PAIN}"/><circle cx="26.6" cy="18.4" r=".9" fill="${PAIN}"/><circle cx="21.2" cy="15.8" r=".8" fill="${PAIN}" opacity=".8"/>`),
+  capelli: face(EYES.ok, `<path d="M31.4 9.4 q1.6 2.4 0 3.6 q-1.6 -1.2 0 -3.6z" fill="#7cc3e8" stroke="#4a8db3" stroke-width=".9"/><path d="M35 13.4 q1.3 2 0 3 q-1.3 -1 0 -3z" fill="#7cc3e8" stroke="#4a8db3" stroke-width=".9"/><path d="M14 11.4 Q17 10.2 20 11" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>`),
+  concentrazione: brain(`<path d="M32 4 q3 0 3 2.6 q0 1.8 -2 2.4 v1.2" fill="none" stroke="${VIO}" stroke-width="1.6" stroke-linecap="round"/><circle cx="33" cy="13" r="1" fill="${VIO}"/>`),
+  seno: torsoFront(`<path d="M12 18.4 L13.4 13.6 M28 18.4 L26.6 13.6" stroke="#e98fa6" stroke-width="1.4" stroke-linecap="round"/><path d="M10.4 21.4 Q11 18 15.4 18 Q19.4 18.6 19.6 22.6 Q17 26 13.4 25.6 Q10.6 25 10.4 21.4Z" fill="${ORG}" ${O}/><path d="M29.6 21.4 Q29 18 24.6 18 Q20.6 18.6 20.4 22.6 Q23 26 26.6 25.6 Q29.4 25 29.6 21.4Z" fill="${ORG}" ${O}/><path d="M10 25.4 Q20 27.4 30 25.4" fill="none" stroke="#e98fa6" stroke-width="1.4" stroke-linecap="round"/>` + bolt(4.6, 15.6, .8) + bolt(33, 15.6, .8)),
+  gonfiore: torsoFront(`<ellipse cx="20" cy="28" rx="9.6" ry="7.4" fill="${SKIN}" ${O}/><path d="M15.4 24 Q17 22.6 19 22.8" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" opacity=".8"/><circle cx="20" cy="29" r=".9" fill="${SKIN2}"/><path d="M3.6 24 Q2 28 3.6 32 M36.4 24 Q38 28 36.4 32" fill="none" stroke="${VIO}" stroke-width="1.5" stroke-linecap="round"/>`),
+  schiena: torsoBack + glow(20, 29.4, 6.4) + bolt(26.6, 25, .8) + bolt(11.4, 25, .8),
+  gambe: `<path d="M11 4 L29 4 L29.4 12 Q28 22 26.8 26 Q26.2 30 26.6 33 Q27 34.6 29.4 35.2 Q30.6 36.4 28.6 36.6 L23.2 36.6 Q22.4 33 22.6 28 Q22.6 22 20.6 15 L19.4 15 Q17.4 22 17.4 28 Q17.6 33 16.8 36.6 L11.4 36.6 Q9.4 36.4 10.6 35.2 Q13 34.6 13.4 33 Q13.8 30 13.2 26 Q12 22 10.6 12Z" fill="${SKIN}" ${O}/><path d="M11 4 L29 4 L29.2 9 Q24 11 20 10.6 Q16 11 10.8 9Z" fill="${ORG}" ${O}/><path d="M6.4 18 v6 M5 22.4 l1.4 1.6 1.4 -1.6 M33.6 18 v6 M32.2 22.4 l1.4 1.6 1.4 -1.6" fill="none" stroke="${VIO}" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>`,
+  nausea: stomach('#cfe3a8', `<path d="M31 6 q2 -2 4 0 q-2 2 0 4 q2 2 4 0" fill="none" stroke="#6aa04a" stroke-width="1.4" stroke-linecap="round"/>`),
+  fame: stomach(ORG, `<path d="M3.6 20 q1.6 -1.6 3.2 0 q1.6 1.6 3.2 0M33 9 q1.4 -1.4 2.8 0 q1.4 1.4 2.8 0" fill="none" stroke="${VIO}" stroke-width="1.4" stroke-linecap="round"/>`),
+  dolci: `<path d="M6.6 20.4 Q10 13.4 15 14.2 Q17.6 14.6 20 16.4 Q22.4 14.6 25 14.2 Q30 13.4 33.4 20.4 Q30 22 20 22 Q10 22 6.6 20.4Z" fill="#e7708d" ${O}/><path d="M6.6 20.4 Q10 22 20 22 Q30 22 33.4 20.4 Q30.4 28.4 20 28.6 Q9.6 28.4 6.6 20.4Z" fill="#d95479" ${O}/><path d="M13 23.6 Q16 24.6 18.4 24.2" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" opacity=".6"/><rect x="26" y="4.6" width="9.6" height="7" rx="1.2" fill="#8a5a3c" stroke="#5c3a26" stroke-width="1.1" transform="rotate(14 30.8 8)"/><path d="M29.4 4.8 l-.9 7 M32.6 5.6 l-.9 7 M26.4 8 l9.2 2.3" stroke="#5c3a26" stroke-width=".8" transform="rotate(14 30.8 8)"/>`,
+  stitichezza: intestine(`<circle cx="22" cy="31" r="3.2" fill="none" stroke="${PAIN}" stroke-width="1.4"/><path d="M19.8 33.2 L24.2 28.8" stroke="${PAIN}" stroke-width="1.4" stroke-linecap="round"/>`),
+  diarrea: intestine(`<path d="M34.4 30.6 q1.8 2.8 0 4.2 q-1.8 -1.4 0 -4.2z" fill="#7cc3e8" stroke="#4a8db3" stroke-width=".9"/><path d="M4 30 q1.6 -1.6 3.2 0 q1.6 1.6 3.2 0" fill="none" stroke="${VIO}" stroke-width="1.3" stroke-linecap="round" transform="translate(-2 4)"/>`),
+  perdite: briefs(`<path d="M20 18.4 q3.4 5 0 7.2 q-3.4 -2.2 0 -7.2z" fill="#f4f0fb" stroke="${VIO}" stroke-width="1.2"/>`),
+  prurito: briefs(`<path d="M3.4 22 l1.6 -1.6 1.6 1.6 1.6 -1.6 1.6 1.6M30.2 22 l1.6 -1.6 1.6 1.6 1.6 -1.6 1.6 1.6M17 6.4 l1.5 -1.5 1.5 1.5 1.5 -1.5 1.5 1.5" fill="none" stroke="${PAIN}" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>`),
+  cistite: `<path d="M9 6 Q11.6 9 13.4 13.6M31 6 Q28.4 9 26.6 13.6" fill="none" stroke="#7a4a64" stroke-width="2.6" stroke-linecap="round"/><path d="M9 6 Q11.6 9 13.4 13.6M31 6 Q28.4 9 26.6 13.6" fill="none" stroke="${ORG2}" stroke-width="1.1" stroke-linecap="round"/><path d="M20 12.4 Q29.6 12.4 30 21.4 Q30 28 23 29.4 L22.4 34 L17.6 34 L17 29.4 Q10 28 10 21.4 Q10.4 12.4 20 12.4Z" fill="${ORG2}" ${O}/><path d="M13.6 18.6 Q14.8 16.4 17.4 15.8" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".75"/><path d="M20 19.6 q3.4 3.4 1.2 6.6 q-.6 -1.6 -1.6 -2 q.4 1.8 -1 2.8 q-2.2 -1.8 -.6 -4.6 q.4 1.2 1.2 1.2 q-.8 -2.2.8 -4z" fill="${PAIN}"/>`,
+  desiderio_basso: heart('#e7c1cc', `<path d="M20 14 L18.4 18.6 L21.4 21 L19.2 26" fill="none" stroke="#7a4a64" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>`),
+  desiderio_alto: heart('#e7577c', `<path d="M33.4 5.6 l.8 1.8 1.8.8 -1.8.8 -.8 1.8 -.8 -1.8 -1.8 -.8 1.8 -.8z" fill="#e3a43a"/><path d="M6 4.6 l.6 1.3 1.3.6 -1.3.6 -.6 1.3 -.6 -1.3 -1.3 -.6 1.3 -.6z" fill="${VIO}"/>`),
+  freddo: hand(`<g stroke="#4a8db3" stroke-width="1.4" stroke-linecap="round"><path d="M33 13 v10 M28.7 15.5 l8.6 5 M28.7 20.5 l8.6 -5"/></g><circle cx="33" cy="18" r="1.4" fill="#cfe9f7" stroke="#4a8db3" stroke-width=".8"/>`),
+  pelle_secca: hand(`<path d="M15.4 24 l1.6 1.4 -.8 1.8 M20 26.4 l1.4 -1.4 1.4 .8 M18 30.4 l1.4 1 -.4 1.6" fill="none" stroke="#c2826a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M31.4 26 l1.6 .6 -.4 1.6 -1.6 -.4z M33.4 30.6 l1.4 .4 -.4 1.4 -1.4 -.4z" fill="${SKIN}" stroke="#c2826a" stroke-width=".8"/>`)
+};
+return (k) => ICONE[k] ? `<svg class="bico" viewBox="0 0 40 40" aria-hidden="true">${ICONE[k]}</svg>` : '';
+  })();
+
   // ---------- contenuti ----------
   const SINTOMI = {
     crampi: { label: 'Crampi', tips: [
-      'Una borsa dell\'acqua calda sulla pancia o sulla schiena per 15-20 minuti rilassa i muscoli.',
+      'Una borsa dell\'acqua calda sulla pancia o sulla schiena per 15-20 minuti rilassa i muscoli: funziona quasi come un antidolorifico leggero.',
       'Una tisana allo zenzero o alla camomilla aiuta, e anche una camminata leggera riduce i crampi.',
-      'Se il dolore è forte, un antidolorifico da banco come l\'ibuprofene funziona meglio se lo prendi appena iniziano, seguendo il foglietto.'],
-      doc: 'Se i crampi ti impediscono di fare le cose di tutti i giorni o non passano con gli antidolorifici, parlane con la ginecologa.' },
+      'Se il dolore è forte, un antidolorifico da banco come l\'ibuprofene funziona meglio se lo prendi appena iniziano, a stomaco pieno e seguendo il foglietto.',
+      'Massaggia la pancia con movimenti circolari in senso orario, magari con un olio caldo: scioglie la tensione.',
+      'Sdraiati sulla schiena con le ginocchia piegate verso il petto, oppure in posizione fetale su un fianco: scarica la pancia.',
+      'Lo sport fatto con regolarità durante tutto il mese riduce i crampi dei cicli successivi.',
+      'Meno caffè, alcol e cibi salati nei giorni del ciclo: possono peggiorare i crampi.'],
+      doc: 'Se i crampi ti impediscono di andare a scuola o al lavoro, non passano con gli antidolorifici o peggiorano di anno in anno, parlane con la ginecologa: può essere endometriosi, che si cura.' },
     testa: { label: 'Mal di testa', tips: [
       'Bevi due bicchieri d\'acqua: spesso il mal di testa del ciclo peggiora con poca acqua.',
       'Riposa qualche minuto al buio e lontano dallo schermo, con un panno fresco sulla fronte.',
-      'Mandorle, banane e cioccolato fondente contengono magnesio, che aiuta con il mal di testa del ciclo.'],
-      doc: 'Se il mal di testa è improvviso e fortissimo o diverso dal solito, chiama il medico.' },
+      'Mandorle, banane e cioccolato fondente contengono magnesio, che aiuta con il mal di testa del ciclo.',
+      'Mangia a orari regolari: saltare i pasti è uno dei motivi più comuni del mal di testa.',
+      'Massaggia piano tempie e base del collo, e controlla di non stringere i denti.',
+      'Se ti viene sempre negli stessi giorni del ciclo, segnalo qui: alla visita potrai mostrare quando capita.'],
+      doc: 'Se il mal di testa è improvviso e fortissimo, diverso dal solito, o arriva con disturbi della vista, formicolii o difficoltà a parlare, chiama subito il medico. Se prendi la pillola e hai emicrania con aura, dillo alla ginecologa.' },
     gonfiore: { label: 'Gonfiore', tips: [
       'Bevi un po\' più acqua del solito: sembra strano, ma riduce la ritenzione.',
       'Una tisana al finocchio dopo i pasti sgonfia la pancia.',
-      'Oggi meno sale, bibite gassate e cibi pronti. Una passeggiata dopo cena aiuta.'] },
+      'Oggi meno sale, bibite gassate e cibi pronti. Una passeggiata dopo cena aiuta.',
+      'Mangia piano e mastica bene: si ingoia meno aria.',
+      'Legumi, cavoli e chewing gum possono gonfiare di più in questi giorni.',
+      'Il gonfiore prima del ciclo è dovuto agli ormoni e sparisce da solo nei primi giorni del ciclo.'] },
     stanchezza: { label: 'Stanchezza', tips: [
       'Concediti 20 minuti di camminata all\'aperto: la luce e il movimento danno energia.',
       'Lenticchie, spinaci, uova e carne rossa contengono ferro: abbinali a un agrume per assorbirlo meglio.',
-      'Stasera prova ad andare a letto mezz\'ora prima. Il tuo corpo sta lavorando, è normale essere stanca.'] },
+      'Stasera prova ad andare a letto mezz\'ora prima. Il tuo corpo sta lavorando, è normale essere stanca.',
+      'Tè e caffè subito dopo i pasti riducono l\'assorbimento del ferro: meglio a distanza di un\'ora.',
+      'Un pisolino di 20 minuti ricarica senza lasciarti intontita.',
+      'Fai colazione con qualcosa di proteico (yogurt, uova, frutta secca): l\'energia dura di più.'],
+      doc: 'Se sei sempre stanca, pallida, hai il fiatone per poco o il ciclo è molto abbondante, chiedi al medico un esame del sangue per ferro e ferritina.' },
     seno: { label: 'Seno dolorante', tips: [
       'Un reggiseno morbido o sportivo, anche per dormire, dà sollievo.',
       'Meno caffè e meno sale in questi giorni riducono la tensione al seno.',
-      'Un impacco fresco per qualche minuto calma il fastidio.'] },
-    acne: { label: 'Acne', tips: [
-      'Lava il viso mattina e sera con un detergente delicato e non schiacciare i brufoli.',
+      'Un impacco fresco per qualche minuto calma il fastidio.',
+      'Il seno teso prima del ciclo è normale: di solito passa quando il ciclo inizia.',
+      'Una volta al mese, qualche giorno dopo la fine del ciclo, fai l\'autopalpazione: è il momento in cui il seno è più morbido.'],
+      doc: 'Se senti un nodulo che non va via dopo il ciclo, una zona che cambia forma o perdite dal capezzolo, fatti vedere dal medico.' },
+    acne: { label: 'Brufoli', tips: [
+      'Lava il viso mattina e sera con un detergente delicato e non schiacciare i brufoli: lasciano macchie.',
       'Cambia spesso la federa del cuscino e pulisci lo schermo del telefono.',
-      'Meno zuccheri e latticini in questi giorni possono aiutare la pelle.'] },
+      'Meno zuccheri e latticini in questi giorni possono aiutare la pelle.',
+      'Usa creme e trucchi con scritto "non comedogenico" e struccati sempre prima di dormire.',
+      'Un prodotto con acido salicilico o perossido di benzoile, solo sul brufolo, lo fa sgonfiare prima.',
+      'I brufoli sul mento e sulla mascella prima del ciclo sono tipici degli ormoni.'],
+      doc: 'Se l\'acne è dolorosa, lascia cicatrici o arriva insieme a ciclo molto irregolare e peli in più, parlane con la dermatologa o la ginecologa.' },
     schiena: { label: 'Mal di schiena', tips: [
       'Il calore aiuta anche qui: borsa dell\'acqua calda nella parte bassa della schiena.',
       'Prova l\'esercizio del gatto: a quattro zampe, inarca e arrotonda la schiena piano per 10 volte.',
-      'Dormire su un fianco con un cuscino tra le ginocchia scarica la schiena.'] },
+      'Dormire su un fianco con un cuscino tra le ginocchia scarica la schiena.',
+      'La posizione del bambino dello yoga, seduta sui talloni con la fronte a terra, allunga la schiena.',
+      'Se stai molto seduta, alzati ogni ora e cammina un paio di minuti.'] },
     nausea: { label: 'Nausea', tips: [
       'Fai pasti piccoli e frequenti, e tieni dei cracker a portata di mano.',
       'Lo zenzero, in tisana o caramelle, calma lo stomaco.',
-      'Un po\' d\'aria fresca e qualche respiro lento aiutano a far passare la nausea.'] },
+      'Un po\' d\'aria fresca e qualche respiro lento aiutano a far passare la nausea.',
+      'Evita cibi fritti, molto grassi o con odori forti finché non passa.',
+      'Bevi a piccoli sorsi tra un pasto e l\'altro, non tanto tutto insieme.'],
+      doc: 'Se vomiti e non riesci a tenere giù nemmeno l\'acqua, o se il ciclo è in ritardo, senti il medico.' },
     dolci: { label: 'Voglia di dolci', tips: [
       'Un paio di quadretti di cioccolato fondente soddisfano la voglia e danno magnesio.',
       'Frutta, datteri o yogurt con miele sono dolci e saziano di più.',
-      'È normale avere più fame prima del ciclo. Non sentirti in colpa.'] },
+      'È normale avere più fame prima del ciclo. Non sentirti in colpa.',
+      'Pasti con abbastanza proteine evitano i picchi di fame di zuccheri a metà pomeriggio.',
+      'Una tisana alla cannella o alla vaniglia dà la sensazione del dolce senza zucchero.'] },
     fame: { label: 'Fame', tips: [
       'Prima del ciclo il corpo consuma un po\' di più: è normale avere più fame.',
       'Pasti con proteine e fibre (legumi, uova, cereali integrali) ti tengono sazia più a lungo.',
-      'Tieni uno spuntino sano in borsa: frutta secca o uno yogurt.'] },
+      'Tieni uno spuntino sano in borsa: frutta secca o uno yogurt.',
+      'A volte la sete si confonde con la fame: prima bevi un bicchiere d\'acqua.'] },
     insonnia: { label: 'Insonnia', tips: [
-      'Metti via il telefono mezz\'ora prima di dormire e tieni la stanza fresca.',
+      'Metti via il telefono mezz\'ora prima di dormire e tieni la stanza fresca (18-20 gradi).',
       'Una camomilla o una tisana alla melissa la sera aiutano a rilassarti.',
-      'Se non riesci a dormire, alzati e leggi qualcosa con luce bassa, poi riprova.'] },
+      'Se non riesci a dormire, alzati e leggi qualcosa con luce bassa, poi riprova.',
+      'Prima del ciclo la temperatura del corpo sale un po\': pigiama leggero e coperte più sottili.',
+      'Niente caffè, tè o energy drink dopo le 15.',
+      'Vai a letto e alzati più o meno alla stessa ora, anche nel fine settimana.'] },
     stitichezza: { label: 'Stitichezza', tips: [
       'Bevi molta acqua e mangia kiwi, prugne o verdure.',
       'Muoviti un po\': una passeggiata aiuta l\'intestino.',
-      'Cereali integrali e semi di lino aggiungono le fibre che servono.'] },
+      'Cereali integrali e semi di lino aggiungono le fibre che servono.',
+      'Un bicchiere d\'acqua tiepida appena sveglia aiuta l\'intestino a partire.',
+      'Prima del ciclo il progesterone rallenta l\'intestino: è normale.'] },
     diarrea: { label: 'Diarrea', tips: [
       'Bevi spesso a piccoli sorsi, anche acqua con sali minerali.',
       'Riso, banane, mele cotte e pane tostato sono leggeri per la pancia.',
-      'Evita caffè, latte e cibi grassi finché non passa.'],
-      doc: 'Se dura più di due giorni o hai febbre, senti il medico.' },
+      'Evita caffè, latte e cibi grassi finché non passa.',
+      'All\'inizio del ciclo le prostaglandine fanno lavorare di più anche l\'intestino: è comune.'],
+      doc: 'Se dura più di due giorni, hai febbre o vedi sangue nelle feci, senti il medico. Se prendi la pillola e hai diarrea forte, la protezione può calare: leggi il foglietto o chiedi al farmacista.' },
     perdite: { label: 'Perdite', tips: [
       'Perdite chiare ed elastiche come albume sono normali nei giorni fertili.',
-      'Un salvaslip traspirante e biancheria di cotone ti fanno sentire più fresca.'],
-      doc: 'Se le perdite cambiano colore o odore, prudono o bruciano, senti la ginecologa.' },
+      'Un salvaslip traspirante e biancheria di cotone ti fanno sentire più fresca.',
+      'Dopo l\'ovulazione le perdite diventano più dense e cremose: anche questo è normale.',
+      'Perdite marroncine poco prima o subito dopo il ciclo sono sangue vecchio, di solito niente di cui preoccuparsi.'],
+      doc: 'Se le perdite cambiano colore (giallo, verde, grigio), hanno cattivo odore, prudono o bruciano, senti la ginecologa.' },
     vertigini: { label: 'Vertigini', tips: [
       'Siediti, bevi un bicchiere d\'acqua e mangia qualcosa.',
       'Alzati piano dal letto o dalla sedia.',
-      'Se succede spesso durante il ciclo, potresti avere poco ferro: parlane con il medico.'],
-      doc: 'Se svieni o le vertigini sono forti, senti subito il medico.' }
+      'Se succede spesso durante il ciclo, potresti avere poco ferro: parlane con il medico.',
+      'Non saltare i pasti nei giorni del ciclo.'],
+      doc: 'Se svieni o le vertigini sono forti, senti subito il medico.' },
+    ovulazione: { label: 'Fitta all\'ovulazione', tips: [
+      'Una fitta da un lato della pancia a metà ciclo è comune: è l\'ovaio che rilascia l\'ovulo e di solito dura da poche ore a un paio di giorni.',
+      'Il calore e un po\' di riposo bastano quasi sempre.',
+      'Può cambiare lato da un mese all\'altro: dipende da quale ovaio lavora.'],
+      doc: 'Se il dolore è molto forte, dura più di due giorni o arriva con febbre, vomito o svenimento, vai dal medico.' },
+    cistite: { label: 'Bruciore a fare pipì', tips: [
+      'Bevi tanta acqua per tutto il giorno: aiuta a lavare via i batteri.',
+      'Non trattenere la pipì e falla sempre dopo i rapporti.',
+      'Pulisciti sempre da davanti verso dietro.',
+      'Evita caffè, alcol e cibi piccanti finché non passa.',
+      'Biancheria di cotone e pantaloni non troppo stretti aiutano a prevenirla.'],
+      doc: 'Se il bruciore non passa in un giorno, vedi sangue nella pipì, hai febbre o male ai fianchi, senti il medico: la cistite spesso va curata con un antibiotico.' },
+    prurito: { label: 'Prurito intimo', tips: [
+      'Lava solo l\'esterno con acqua tiepida e un detergente delicato, al massimo una o due volte al giorno.',
+      'Niente lavande interne, salviette profumate o deodoranti intimi: irritano.',
+      'Biancheria di cotone, e togli subito il costume bagnato o i vestiti sudati.',
+      'Durante il ciclo cambia spesso assorbente: l\'umidità favorisce il prurito.'],
+      doc: 'Se hai prurito con perdite bianche e grumose (come ricotta) può essere candida; se le perdite sono grigie con odore di pesce può essere vaginosi. In entrambi i casi senti la ginecologa o il farmacista.' },
+    gambe: { label: 'Gambe pesanti', tips: [
+      'Metti le gambe in alto per 10-15 minuti, appoggiate al muro.',
+      'Una doccia fresca sulle gambe, dal basso verso l\'alto, dà sollievo.',
+      'Muovi le caviglie e cammina: aiuta la circolazione.',
+      'Meno sale e più acqua riducono la ritenzione.'] },
+    concentrazione: { label: 'Poca concentrazione', tips: [
+      'Lavora a blocchi di 25 minuti con 5 di pausa.',
+      'Scrivi le cose da fare: prima del ciclo la memoria può essere un po\' più distratta.',
+      'Bevi acqua e fai uno spuntino: il cervello lavora peggio a digiuno.',
+      'Dieci minuti di aria fresca o di camminata rinfrescano la mente.'] },
+    desiderio_basso: { label: 'Poco desiderio', tips: [
+      'Il desiderio cambia durante il mese: spesso è più basso prima e durante il ciclo, e più alto nei giorni fertili.',
+      'Stress, stanchezza e poco sonno abbassano molto il desiderio.',
+      'Parlarne con il partner aiuta: non c\'è niente di sbagliato.'],
+      doc: 'Se il desiderio è sparito da mesi o è iniziato con una nuova pillola, parlane con la ginecologa.' },
+    desiderio_alto: { label: 'Tanto desiderio', tips: [
+      'Intorno all\'ovulazione gli ormoni alzano il desiderio: è il periodo più fertile.',
+      'Se non cercate una gravidanza, in questi giorni la protezione è ancora più importante.'] },
+    freddo: { label: 'Freddo', tips: [
+      'Mani e piedi freddi durante il ciclo sono comuni: calzini caldi e una bevanda calda aiutano.',
+      'Muoviti un po\' per riattivare la circolazione.',
+      'Se hai sempre freddo, potresti avere poco ferro: è una cosa da chiedere al medico.'] },
+    pelle_secca: { label: 'Pelle secca', tips: [
+      'Una crema idratante subito dopo la doccia, con la pelle ancora umida.',
+      'Docce tiepide e non troppo lunghe.',
+      'Bevi abbastanza e mangia frutta secca, pesce e olio d\'oliva per i grassi buoni.'] },
+    capelli: { label: 'Capelli grassi', tips: [
+      'Prima del ciclo la pelle e il cuoio capelluto producono più sebo: è normale.',
+      'Uno shampoo delicato, anche tutti i giorni se serve, va bene.',
+      'Lo shampoo secco è comodo nei giorni in cui non hai tempo.'] }
   };
   const UMORI = {
     serena: { label: 'Serena', tip: 'Che bello sentirti serena. Approfittane per fare qualcosa che ti piace.' },
     felice: { label: 'Felice', tip: 'Giornata felice: segnati cosa l\'ha resa bella, così ci ritorni quando serve.' },
+    energica: { label: 'Carica', tip: 'Hai energia: buon momento per un allenamento più intenso o per le cose che rimandi da un po\'.' },
     sensibile: { label: 'Sensibile', tip: 'Essere più sensibile prima e durante il ciclo è normale. Concediti qualcosa di bello e non essere dura con te stessa.' },
     irritabile: { label: 'Irritabile', tip: 'Gli ormoni rendono tutto più pesante. Dieci minuti da sola, una camminata o la tua musica preferita aiutano a staccare.' },
     ansiosa: { label: 'Ansiosa', tip: 'Prova a respirare: 4 secondi dentro, 4 trattieni, 6 fuori, per qualche minuto. Meno caffè oggi.' },
-    giu: { label: 'Giù', tip: 'Va bene avere giornate così. Scrivi a qualcuno che ti vuole bene e fai una cosa piccola che ti fa stare meglio.' }
+    stressata: { label: 'Stressata', tip: 'Lo stress può anche far ritardare il ciclo. Scegli una sola cosa importante per oggi e il resto rimandalo senza sensi di colpa.' },
+    giu: { label: 'Giù', tip: 'Va bene avere giornate così. Scrivi a qualcuno che ti vuole bene e fai una cosa piccola che ti fa stare meglio. Se ti senti giù per due settimane o più, parlane con il medico: non devi farcela da sola.' }
   };
+  // Guida: tutto quello che può servire, diviso per argomento.
+  const GUIDA = [
+    { t: 'Come funziona il ciclo', p: [
+      'Il ciclo si conta dal primo giorno di mestruazioni al giorno prima delle mestruazioni successive.',
+      'Fase mestruale (giorni 1-5 circa): l\'utero elimina il rivestimento che non è servito.',
+      'Fase follicolare: gli estrogeni salgono, l\'energia e l\'umore spesso migliorano.',
+      'Ovulazione: circa 14 giorni prima del ciclo successivo un ovaio rilascia un ovulo. È il momento più fertile.',
+      'Fase luteale: sale il progesterone. Negli ultimi giorni possono arrivare gonfiore, seno teso, sbalzi d\'umore.',
+      'L\'ovulo vive circa un giorno, gli spermatozoi fino a 5: per questo i giorni fertili sono circa 6.'] },
+    { t: 'Cosa è normale e cosa no', p: [
+      'Un ciclo dura di solito tra 21 e 35 giorni; il flusso tra 2 e 7 giorni.',
+      'Nei primi anni dopo il primo ciclo, e con un ciclo irregolare come il tuo, qualche giorno di differenza da un mese all\'altro è normale.',
+      'Piccoli coaguli scuri nei giorni più abbondanti sono normali.',
+      'Da sentire la ginecologa: flusso che dura più di 7 giorni, assorbente da cambiare ogni ora per più ore, coaguli più grandi di una moneta da 2 euro, sangue tra un ciclo e l\'altro o dopo i rapporti, cicli più corti di 21 o più lunghi di 35 giorni per mesi, niente ciclo per 3 mesi.'] },
+    { t: 'Assorbenti, tamponi, coppetta e mutande', p: [
+      'Assorbenti esterni: cambiali ogni 4-6 ore, anche se non sono pieni.',
+      'Tamponi interni: usa l\'assorbenza più bassa che ti basta e cambiali ogni 4-8 ore, mai oltre 8. Per la notte sono meglio assorbenti esterni o mutande mestruali.',
+      'Coppetta mestruale: si tiene fino a 12 ore, si svuota, si sciacqua e a fine ciclo si sterilizza bollendola qualche minuto.',
+      'Mutande mestruali: si lavano in acqua fredda e si riusano; comode per la notte e per i giorni leggeri.',
+      'Sindrome da shock tossico: è rara ma seria. Con un tampone o la coppetta, se hai febbre alta improvvisa, vomito, diarrea, eruzione rossa tipo scottatura o capogiri, toglili e vai subito al pronto soccorso.'] },
+    { t: 'Igiene intima', p: [
+      'La vagina si pulisce da sola: lava solo l\'esterno, con acqua tiepida e un detergente delicato.',
+      'Niente lavande interne, spugne o prodotti profumati.',
+      'Pulisciti da davanti verso dietro.',
+      'Biancheria di cotone, e cambiala ogni giorno.',
+      'Fai pipì dopo i rapporti: riduce il rischio di cistite.'] },
+    { t: 'Cosa mangiare nelle varie fasi', p: [
+      'Durante il ciclo: ferro (legumi, carne rossa, spinaci, uova) con vitamina C (agrumi, kiwi, peperoni) per assorbirlo meglio.',
+      'Dopo il ciclo: proteine e verdure per l\'energia che sale.',
+      'Ovulazione: fibre, frutta e verdura colorata.',
+      'Prima del ciclo: magnesio (frutta secca, banane, cioccolato fondente, cereali integrali) e meno sale, zuccheri, caffè e alcol.',
+      'Una donna ha bisogno di circa 18 mg di ferro al giorno, più di un uomo.'] },
+    { t: 'Sport e ciclo', p: [
+      'Durante il ciclo: yoga, stretching, camminate. Muoversi riduce i crampi.',
+      'Dopo il ciclo e all\'ovulazione: è il momento migliore per allenamenti intensi e per provare a fare di più.',
+      'Prima del ciclo: allenamenti più moderati, nuoto, pilates.',
+      'Fare tanto sport e mangiare troppo poco può far sparire il ciclo: in quel caso serve parlarne con il medico.'] },
+    { t: 'Sindrome premestruale', p: [
+      'Nei giorni prima del ciclo molte ragazze hanno gonfiore, seno teso, irritabilità, voglia di dolci, stanchezza. Passa quando il ciclo inizia.',
+      'Aiutano: sonno regolare, movimento, meno sale, zuccheri e caffè, e segnare i sintomi qui per riconoscere quando arrivano.',
+      'Se prima del ciclo l\'umore diventa così giù, ansioso o arrabbiato da rovinare le giornate e le relazioni, può essere disturbo disforico premestruale: si cura, parlane con la ginecologa.'] },
+    { t: 'Ciclo irregolare', p: [
+      'Cause comuni: stress, poco sonno, viaggi, cambi di peso, sport molto intenso, malattie, alcuni farmaci.',
+      'Cause da controllare: problemi della tiroide, ovaio policistico, gravidanza.',
+      'Segnare sempre l\'inizio del ciclo qui aiuta la ginecologa a capire cosa succede.',
+      'Con un ciclo irregolare i giorni fertili calcolati dall\'app sono solo una stima.'] },
+    { t: 'Ovaio policistico (PCOS)', p: [
+      'Riguarda circa una donna su 10.',
+      'Segni tipici: cicli molto irregolari o che saltano, acne, peli in più su viso, petto o pancia, capelli che si diradano, difficoltà a controllare il peso.',
+      'Si scopre con una visita, gli esami del sangue e un\'ecografia. Si cura, quindi se ti riconosci in questi segni parlane con la ginecologa.'] },
+    { t: 'Endometriosi', p: [
+      'Il tessuto simile a quello dell\'utero cresce anche fuori: riguarda circa una donna su 10.',
+      'Segni: crampi molto forti che non passano con gli antidolorifici, dolore durante i rapporti, dolore a fare pipì o andare in bagno durante il ciclo, dolore che peggiora negli anni.',
+      'Il dolore forte del ciclo non è "normale da sopportare": se ti riconosci, parlane con la ginecologa.'] },
+    { t: 'Contraccezione', p: [
+      'Quest\'app NON è un metodo contraccettivo: i giorni fertili sono una stima, soprattutto con un ciclo irregolare.',
+      'Preservativo: protegge anche dalle infezioni; nell\'uso reale funziona circa 87 volte su 100. Usalo dall\'inizio alla fine.',
+      'Pillola, anello, cerotto: nell\'uso reale funzionano circa 93 volte su 100; molto di più se non dimentichi mai.',
+      'Spirale e impianto sottocutaneo: oltre 99 su 100, durano anni e non devi ricordarti niente.',
+      'Per scegliere il metodo giusto puoi andare al consultorio familiare: è gratuito.'] },
+    { t: 'Se dimentichi la pillola', p: [
+      'Pillola combinata (estrogeni e progestinico), una sola pillola dimenticata e sono passate meno di 48 ore da quando andava presa: prendila appena ti ricordi, anche se sono due nello stesso giorno. Di solito sei ancora protetta.',
+      'Due o più pillole dimenticate: prendi l\'ultima dimenticata, continua normalmente e usa il preservativo per 7 giorni. Se avete avuto rapporti nei giorni prima, chiedi al farmacista della pillola del giorno dopo.',
+      'Pillola solo progestinica: il margine è molto più corto (3 o 12 ore a seconda del tipo).',
+      'Vomito entro 3-4 ore dalla pillola o diarrea forte contano come pillola dimenticata.',
+      'Ogni pillola ha regole sue: controlla sempre il foglietto o chiedi al farmacista.'] },
+    { t: 'Pillola del giorno dopo', p: [
+      'Serve dopo un rapporto non protetto o se il preservativo si è rotto.',
+      'Più presto la prendi, meglio funziona: levonorgestrel entro 3 giorni, ulipristal entro 5 giorni.',
+      'In Italia si compra in farmacia senza ricetta.',
+      'Non è un aborto e non fa male alla fertilità futura. Il ciclo dopo può arrivare qualche giorno prima o dopo.',
+      'Se il ciclo ritarda di più di una settimana dopo averla presa, fai un test di gravidanza.'] },
+    { t: 'Test di gravidanza', p: [
+      'È affidabile dal primo giorno di ritardo, oppure 3 settimane dopo il rapporto.',
+      'Con la prima pipì del mattino è più sensibile.',
+      'Un test negativo fatto troppo presto può sbagliare: se il ciclo non arriva, ripetilo dopo qualche giorno.',
+      'Anche una seconda riga molto chiara, entro il tempo indicato, vuol dire positivo.'] },
+    { t: 'Infezioni intime', p: [
+      'Candida: prurito, bruciore, perdite bianche e grumose. Viene spesso dopo antibiotici, stress o umidità.',
+      'Vaginosi: perdite grigiastre con odore di pesce, spesso senza prurito.',
+      'Cistite: bruciore e bisogno continuo di fare pipì.',
+      'Tutte e tre si curano facilmente, ma serve la cura giusta: senti la ginecologa o il farmacista.'] },
+    { t: 'Infezioni sessualmente trasmesse', p: [
+      'Molte (come la clamidia) non danno sintomi ma possono danneggiare la fertilità.',
+      'Il preservativo è l\'unico metodo che protegge.',
+      'Con un partner nuovo è una buona idea fare i test, anche in coppia. Al consultorio o nei centri per le infezioni sessualmente trasmesse spesso sono gratuiti e riservati.'] },
+    { t: 'Controlli da fare', p: [
+      'Visita ginecologica: una volta l\'anno, o prima se qualcosa non va.',
+      'Pap test: in Italia lo screening gratuito parte a 25 anni, ogni 3 anni; dai 30 anni si passa al test HPV ogni 5 anni. Arriva una lettera dall\'ASL.',
+      'Vaccino HPV: protegge dai virus che causano il tumore del collo dell\'utero; si può fare anche da adulte.',
+      'Autopalpazione del seno: una volta al mese, qualche giorno dopo la fine del ciclo.',
+      'Esami del sangue con ferro e ferritina se il ciclo è abbondante o sei sempre stanca.'] },
+    { t: 'Sonno e ciclo', p: [
+      'Prima del ciclo il sonno può peggiorare per il calo degli ormoni e la temperatura più alta.',
+      'Aiutano: stanza fresca e buia, orari regolari, niente schermi prima di dormire.',
+      'Per non sporcare le lenzuola: assorbenti notturni più lunghi o mutande mestruali, e un asciugamano scuro sotto.'] },
+    { t: 'Pelle e capelli', p: [
+      'Dopo il ciclo la pelle è di solito più bella; prima del ciclo è più grassa e arrivano i brufoli.',
+      'Prima del ciclo: detergente delicato e prodotti non comedogenici.',
+      'Durante il ciclo la pelle è più sensibile: non è il momento migliore per ceretta o trattamenti aggressivi.'] },
+    { t: 'Dove chiedere aiuto', p: [
+      'Consultorio familiare: gratuito, non serve l\'impegnativa. Ci trovi ginecologa, ostetrica e psicologa.',
+      'Farmacista: per dubbi su pillola, pillola del giorno dopo e piccoli disturbi.',
+      'Medico di base: per esami del sangue e ricette.',
+      'Numero 1522: gratuito, attivo giorno e notte, per chi subisce violenza o stalking.',
+      'Per un\'emergenza: 112.'] }
+  ];
+  // "Lo sapevi?": una curiosità diversa ogni giorno.
+  const SAPEVI = [
+    'Durante un ciclo si perdono in media solo 30-40 ml di sangue, circa due o tre cucchiai.',
+    'Gli spermatozoi possono vivere fino a 5 giorni nel corpo: per questo si può restare incinta anche con un rapporto prima dell\'ovulazione.',
+    'L\'ovulazione avviene circa 14 giorni prima del ciclo successivo, non sempre il giorno 14.',
+    'L\'orgasmo può alleviare i crampi del ciclo.',
+    'Lo stress può ritardare l\'ovulazione e quindi far arrivare il ciclo più tardi.',
+    'Prima del ciclo il corpo brucia un po\' più energia: per questo hai più fame.',
+    'Dopo l\'ovulazione la temperatura del corpo sale di circa mezzo grado.',
+    'Il ferro dei legumi si assorbe molto meglio insieme a un po\' di vitamina C.',
+    'Il cioccolato fondente contiene magnesio, che aiuta i crampi e l\'umore.',
+    'Il ciclo può sincronizzarsi con le amiche? Gli studi dicono di no: è solo una coincidenza.',
+    'Si può fare il bagno in mare o in piscina con il ciclo, usando tampone o coppetta.',
+    'Muoversi durante il ciclo riduce i crampi più che stare ferma.',
+    'Il seno può cambiare leggermente di misura durante il mese.',
+    'Fare pipì dopo i rapporti riduce molto il rischio di cistite.',
+    'La vagina si pulisce da sola: le lavande interne fanno più male che bene.',
+    'Il primo giorno di flusso vero, non lo spotting, è il giorno 1 del ciclo.',
+    'Segnare i sintomi ogni giorno aiuta la ginecologa a capire molto di più di una sola visita.',
+    'Il ciclo può cambiare con le stagioni, i viaggi e i cambi di fuso orario.',
+    'Le perdite chiare ed elastiche sono un segnale naturale che sei nei giorni fertili.',
+    'Il vaccino HPV protegge dai virus che causano quasi tutti i tumori del collo dell\'utero.',
+    'Con la coppetta mestruale si possono risparmiare centinaia di euro in pochi anni.',
+    'Il dolore forte del ciclo non va sopportato in silenzio: spesso ha una causa che si può curare.',
+    'Dormire poco peggiora i sintomi premestruali.',
+    'Bere acqua riduce il gonfiore, anche se sembra il contrario.',
+    'Nei giorni fertili molte ragazze si sentono più sicure e socievoli.'
+  ];
   const FLUSSI = [['', 'Nessuno'], ['spotting', 'Spotting'], ['leggero', 'Leggero'], ['medio', 'Medio'], ['forte', 'Forte']];
   const RAPPORTI = [['', 'Nessuno'], ['protetto', 'Protetto'], ['non_protetto', 'Non protetto']];
   const FASI = {
@@ -694,26 +1033,26 @@ details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; f
     if (m.cur) s += arc(idx(m.cur.from), idx(m.cur.to), 'var(--fert-soft)', 16);
     s += arc(1, idx(m.endOf(m.last)), 'var(--period)', 16);
     if (m.cycleDay > m.cyc) s += arc(m.cyc + 1, m.cycleDay, 'var(--late)', 8);
-    if (m.cur) { const [x, y] = pos(idx(m.cur.ovu)); s += `<circle class="dot-o" cx="${x}" cy="${y}" r="7" fill="var(--accent)"/>`; }
+    if (m.cur) { const [x, y] = pos(idx(m.cur.ovu)); s += `<circle class="dot-o" cx="${x}" cy="${y}" r="8.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="3"/>`; }
     const [tx, ty] = pos(Math.min(m.cycleDay, L));
-    s += `<circle class="dot-t" cx="${tx}" cy="${ty}" r="10" fill="var(--surface)" stroke="var(--fg)" stroke-width="3"/>`;
+    s += `<circle class="dot-t" cx="${tx}" cy="${ty}" r="12" fill="var(--cream)" stroke="var(--title)" stroke-width="4"/>`;
 
-    let lab, big, sub, cls = '';
-    if (m.ongoing) { lab = 'Ciclo in corso'; big = `Giorno ${m.cycleDay}`; sub = m.last.end ? `finisce il ${fmtDM(m.last.end)}` : `finisce verso il ${fmtDM(m.endOf(m.last))}`; cls = 'per'; }
-    else if (m.delay > 0) { lab = 'Ritardo'; big = giorni(m.delay); sub = `previsto il ${fmtDM(m.expected)}`; cls = 'late'; }
+    let lab, big, sub, cls = '', unit = '';
+    if (m.ongoing) { lab = 'Ciclo in corso'; big = `${m.cycleDay}°`; unit = 'giorno'; sub = m.last.end ? `finisce il ${fmtDMs(m.last.end)}` : `finisce verso il ${fmtDMs(m.endOf(m.last))}`; cls = 'per'; }
+    else if (m.delay > 0) { lab = 'Ritardo'; big = m.delay; unit = m.delay === 1 ? 'giorno' : 'giorni'; sub = `previsto il ${fmtDMs(m.expected)}`; cls = 'late'; }
     else if (m.today === m.expected) { lab = 'Ciclo previsto'; big = 'Oggi'; sub = fmtDM(m.expected); cls = 'per'; }
-    else { const n = diff(m.today, m.expected); lab = 'Prossimo ciclo tra'; big = giorni(n); sub = `previsto il ${fmtDM(m.expected)}`; }
-    return `<div class="ring"><svg viewBox="0 0 220 220" role="img" aria-label="${esc(lab + ' ' + big + ', ' + sub)}"><g transform="rotate(-90 110 110)">${s}</g></svg>
-      <div class="in"><span class="lab">${lab}</span><span class="big ${cls}">${big}</span><span class="sub">${sub}</span></div></div>`;
+    else { const n = diff(m.today, m.expected); lab = 'Ciclo tra'; big = n; unit = n === 1 ? 'giorno' : 'giorni'; sub = `previsto il ${fmtDMs(m.expected)}`; }
+    return `<div class="ring"><svg viewBox="0 0 220 220" role="img" aria-label="${esc(lab + ' ' + big + ' ' + unit + ', ' + sub)}"><g transform="rotate(-90 110 110)">${s}</g></svg>
+      <div class="in"><span class="lab">${lab}</span><span class="big ${cls}">${big}</span>${unit ? `<span class="unit ${cls}">${unit}</span>` : ''}<span class="sub">${sub}</span></div></div>`;
   }
 
   function tipsFor(log, d) {
     const out = [];
-    (log && log.sym || []).forEach((k, i) => { const s = SINTOMI[k]; if (s) out.push({ t: 'Per ' + s.label.toLowerCase(), p: daily(s.tips, d, i), doc: s.doc }); });
+    (log && log.sym || []).forEach((k, i) => { const s = SINTOMI[k]; if (s) out.push({ t: 'Per ' + s.label.toLowerCase(), p: daily(s.tips, d, i), doc: s.doc, k }); });
     if (log && log.mood && UMORI[log.mood]) out.push({ t: 'Umore: ' + UMORI[log.mood].label.toLowerCase(), p: UMORI[log.mood].tip });
     return out;
   }
-  const tipHtml = (x) => `<div class="tip" data-k="${esc(x.t)}"><h3>${esc(x.t)}</h3><p>${esc(x.p)}</p>${x.doc ? `<p class="doc">${esc(x.doc)}</p>` : ''}</div>`;
+  const tipHtml = (x) => `<div class="tip" data-k="${esc(x.t)}"><h3>${x.k ? ICON_SVG(x.k) : ''}${esc(x.t)}</h3><p>${esc(x.p)}</p>${x.doc ? `<p class="doc">${esc(x.doc)}</p>` : ''}</div>`;
 
   function unprotectedThisCycle(m) {
     return Object.entries(data.logs).some(([d, l]) => d >= addDays(m.last.start, -3) && l.sex === 'non_protetto');
@@ -787,20 +1126,27 @@ details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; f
       ${note}
       ${sexNote ? `<section class="panel"><p class="label">Rapporto di ${fa(diff(sexDay, today))}</p>${tipHtml(sexNote)}<button class="linkbtn" data-go="sintomi" data-day="${sexDay}">Leggi tutto</button></section>` : ''}
       <section class="panel">
-        <dl class="facts">
-          <div><dt>Prossimo ciclo</dt><dd>${cap(fmtWDM(m.expected))}${m.delay ? `<small>ritardo di ${giorni(m.delay)}</small>` : ''}</dd></div>
-          <div><dt>Ultimo ciclo</dt><dd>${m.ongoing ? 'In corso' : `${fmtDMs(m.last.start)} – ${fmtDMs(m.endOf(m.last))}`}<small>${m.ongoing ? 'dal ' + fmtDMs(m.last.start) + ' · ' : ''}iniziato ${fa(diff(m.last.start, today))}</small></dd></div>
-          ${nextOvu ? `<div><dt>Prossima ovulazione</dt><dd>${cap(fmtWDM(nextOvu.ovu))}<small>giorni fertili ${fmtDMs(nextOvu.from)} – ${fmtDMs(nextOvu.to)}</small></dd></div>` : ''}
-          ${lastOvu ? `<div><dt>Ultima ovulazione</dt><dd>${cap(fmtWDM(lastOvu.ovu))}<small>stimata · ${fa(diff(lastOvu.ovu, today))}</small></dd></div>` : ''}
-          <div><dt>Durata del ciclo</dt><dd>${giorni(m.cyc)}<small>${based}${range ? ', ' + range : ''}</small></dd></div>
-          <div><dt>Durata del flusso</dt><dd>${giorni(m.flow)}<small>${m.plens.length ? `media di ${m.plens.length} ${m.plens.length === 1 ? 'ciclo' : 'cicli'}` : 'valore di partenza'}</small></dd></div>
-        </dl>
+        <div class="kv">
+          <div class="kg" style="--c:var(--period);--t:var(--period-soft)"><p class="label"><i></i>Ciclo</p><div class="kgrid">
+            <div class="kt"><span>Prossimo</span><b>${cap(fmtWDM(m.expected))}</b><small>${m.delay ? `ritardo di ${giorni(m.delay)}` : m.today < m.expected ? 'tra ' + giorni(diff(m.today, m.expected)) : 'previsto oggi'}</small></div>
+            <div class="kt"><span>Ultimo</span><b>${m.ongoing ? 'In corso' : `${fmtDMs(m.last.start)} – ${fmtDMs(m.endOf(m.last))}`}</b><small>${m.ongoing ? 'dal ' + fmtDMs(m.last.start) : 'iniziato ' + fa(diff(m.last.start, today))}</small></div>
+          </div></div>
+          ${nextOvu || lastOvu ? `<div class="kg" style="--c:var(--accent);--t:var(--fert-soft)"><p class="label"><i></i>Ovulazione</p><div class="kgrid">
+            ${nextOvu ? `<div class="kt"><span>Prossima</span><b>${cap(fmtWDM(nextOvu.ovu))}</b><small>fertile ${fmtDMs(nextOvu.from)} – ${fmtDMs(nextOvu.to)}</small></div>` : ''}
+            ${lastOvu ? `<div class="kt"><span>Ultima</span><b>${cap(fmtWDM(lastOvu.ovu))}</b><small>stimata, ${fa(diff(lastOvu.ovu, today))}</small></div>` : ''}
+          </div></div>` : ''}
+          <div class="kg" style="--c:var(--muted);--t:var(--chip)"><p class="label"><i></i>Durata media</p><div class="kgrid">
+            <div class="kt"><span>Ciclo</span><b>${giorni(m.cyc)}</b><small>${range ? range.replace('di solito ', '') : based}</small></div>
+            <div class="kt"><span>Flusso</span><b>${giorni(m.flow)}</b><small>${m.plens.length ? `media di ${m.plens.length} ${m.plens.length === 1 ? 'ciclo' : 'cicli'}` : 'valore di partenza'}</small></div>
+          </div></div>
+        </div>
       </section>
       <section class="panel">
         <p class="label">Consiglio di oggi</p>
         ${tipHtml(tip)}
         <button class="linkbtn" data-go="sintomi" data-day="${today}">${log ? 'Modifica come ti senti oggi' : 'Segna come ti senti oggi'}</button>
-      </section>`;
+      </section>
+      <section class="panel sapevi"><p class="label">Lo sapevi?</p><p>${esc(daily(SAPEVI, today, 3))}</p><button class="linkbtn" data-go="consigli">Leggi la guida completa</button></section>`;
   }
 
   function viewCal(m, today) {
@@ -849,7 +1195,7 @@ details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; f
     const d = st.symDay;
     const log = data.logs[d] || {};
     const sym = log.sym || [];
-    const chips = Object.entries(SINTOMI).map(([k, s]) => `<button class="chip" data-sym="${k}" aria-pressed="${sym.includes(k)}">${s.label}</button>`).join('');
+    const chips = Object.entries(SINTOMI).map(([k, s]) => `<button class="chip sy" data-sym="${k}" aria-pressed="${sym.includes(k)}">${ICON_SVG(k)}<span>${s.label}</span></button>`).join('');
     const moods = Object.entries(UMORI).map(([k, u]) => `<button data-mood="${k}" aria-pressed="${log.mood === k}">${u.label}</button>`).join('');
     const flows = FLUSSI.map(([k, l]) => `<button data-flow="${k}" aria-pressed="${(log.flow || '') === k}">${l}</button>`).join('');
     const sexes = RAPPORTI.map(([k, l]) => `<button data-sex="${k}" aria-pressed="${(log.sex || '') === k}">${l}</button>`).join('');
@@ -863,7 +1209,7 @@ details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; f
         <h1 style="text-align:center">${rel}<small>${d === today ? cap(fmtLong(d)) : 'Come stavi?'}</small></h1>
         <button class="iconbtn" data-symday="1" aria-label="Giorno successivo" ${d >= today ? 'disabled' : ''}>${NEXT}</button></div>
       ${d !== today ? '<button class="todaybtn" data-symday="0" style="justify-self:center">Torna a oggi</button>' : ''}
-      <section class="panel"><p class="label">Sintomi</p><div class="chips">${chips}</div></section>
+      <section class="panel"><p class="label">Sintomi</p><div class="chips symg">${chips}</div></section>
       <section class="panel"><p class="label">Umore</p><div class="seg">${moods}</div></section>
       <section class="panel"><p class="label">Flusso</p><div class="seg">${flows}</div>${flowHint}</section>
       <section class="panel"><p class="label">Altro</p>
@@ -916,8 +1262,11 @@ details.lib ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; f
       <section class="panel"><h2>Cosa ti capita più spesso <small>ultimi 4 mesi</small></h2>
         ${top.length ? `<div class="freq">${freq}</div>` : '<p class="empty">Quando avrai segnato qualche sintomo, qui vedrai quali ti capitano più spesso e in che giorni del ciclo.</p>'}
       </section>
-      <section class="panel"><h2>Tutti i consigli</h2>
-        <div>${Object.values(SINTOMI).map((s) => `<details class="lib"><summary>${s.label}</summary><ul>${s.tips.map((t) => `<li>${esc(t)}</li>`).join('')}${s.doc ? `<li style="color:var(--late)">${esc(s.doc)}</li>` : ''}</ul></details>`).join('')}</div>
+      <section class="panel"><h2>Guida <small>tutto quello che può servirti</small></h2>
+        <div>${GUIDA.map((g) => `<details class="lib"><summary>${esc(g.t)}</summary><ul>${g.p.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></details>`).join('')}</div>
+      </section>
+      <section class="panel"><h2>Consigli per sintomo</h2>
+        <div>${Object.entries(SINTOMI).map(([k, s]) => `<details class="lib"><summary>${ICON_SVG(k)}${s.label}</summary><ul>${s.tips.map((t) => `<li>${esc(t)}</li>`).join('')}${s.doc ? `<li style="color:var(--late)">${esc(s.doc)}</li>` : ''}</ul></details>`).join('')}</div>
       </section>
       <section class="note violet"><p><b>Quando sentire la ginecologa</b></p>
         <p>Questi consigli sono indicazioni generali e non sostituiscono il medico. Senti la ginecologa se hai dolori molto forti, un flusso così abbondante da cambiare assorbente ogni ora per più ore, perdite di sangue tra un ciclo e l'altro o dopo i rapporti, o se il ciclo non arriva da più di tre mesi.</p></section>`;
